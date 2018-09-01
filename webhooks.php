@@ -31,14 +31,10 @@ if (!is_null($events['events'])) {
 					curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
 					$result = curl_exec($ch);
 
-					$str = explode("</html>",$result);
+					
 					$value = "";
 					
-						//$value = $text.' : ไม่พบข้อมูลที่ท่านค้นหา..!';
-
-					
-
-						$str2 = explode("||",$str[1]);
+						$str2 = explode("||",$result);
 
 						foreach ($str2 as  $val) {
 							 $value .= $val."\r\n\r\n";
@@ -46,7 +42,7 @@ if (!is_null($events['events'])) {
 					
 
 				// Build message to reply back
-				$value = trim($result);
+				$value = trim($value);
 				$messages = [
 					'type' => 'text',
 					'text' => $value
