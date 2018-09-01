@@ -46,7 +46,7 @@ if (!is_null($events['events'])) {
 					}
 
 				// Build message to reply back
-				$value = trime($value);
+				$value = trim($value);
 				$messages = [
 					'type' => 'text',
 					'text' => $value
