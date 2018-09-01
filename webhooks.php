@@ -33,17 +33,17 @@ if (!is_null($events['events'])) {
 
 					$str = explode("</html>",$result);
 					$value = "";
-					if($str[1] == ''){
-						$value = $text.' : ไม่พบข้อมูลที่ท่านค้นหา..!';
+					
+						//$value = $text.' : ไม่พบข้อมูลที่ท่านค้นหา..!';
 
-					}else{
+					
 
 						$str2 = explode("||",$str[1]);
 
 						foreach ($str2 as  $val) {
 							 $value .= $val."\r\n\r\n";
 						}
-					}
+					
 
 				// Build message to reply back
 				$value = trim($value);
