@@ -25,11 +25,31 @@ if (!is_null($events['events'])) {
 			if(substr($text,0, 1) == '#'){
 				$text = trim(substr($text, 1));
 
+					$ch = curl_init('http://www.police4.go.th/phonebook/linebot.php?name='.$text);
+					curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+					curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+					curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+					$result = curl_exec($ch);
+
+					$str = explode("</html>",$result);
+					$value = "";
+					if($str[1] == ''){
+						$value = $text.' : ไม่พบข้อมูลที่ท่านค้นหา..!';
+
+					}else{
+
+						$str2 = explode("||",$str[1]);
+
+						foreach ($str2 as  $val) {
+							 $value .= $val."\r\n\r\n";
+						}
+					}
 
 				// Build message to reply back
+				$value = trime($value);
 				$messages = [
 					'type' => 'text',
-					'text' => $text
+					'text' => $value
 				];
 
 				// Make a POST Request to Messaging API to reply to sender
