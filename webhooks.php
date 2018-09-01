@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
 
 			
 			if(substr($text,0, 1) == '#'){
-				$text = (substr($text, 1);
+				$text = substr($text, 1);
 
 					$ch = curl_init('http://www.police4.go.th/phonebook/linebot.php?name='.$text);
 					curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
