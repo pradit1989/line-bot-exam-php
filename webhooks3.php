@@ -20,9 +20,10 @@ if (!is_null($events['events'])) {
 			$text = $event['message']['text'];
 			// Get replyToken
 			$replyToken = $event['replyToken'];
-					
+			
+			//cut first line only
 			$lines=explode("\n", $text);
-
+			$text = $lines['0'];
 			
 			if(substr($text,0, 1) == '#'){
 				$text = trim(substr($text, 1));
@@ -49,7 +50,7 @@ if (!is_null($events['events'])) {
 				$value = trim($value);
 				$messages = [
 					'type' => 'text',
-					'text' => $lines['0']
+					'text' => $value
 				];
 
 				// Make a POST Request to Messaging API to reply to sender
